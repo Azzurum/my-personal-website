@@ -1,0 +1,620 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  
+  <!-- 
+    GSAP (GreenSock) TweenMax Library
+    Used throughout the site for smooth animations, easing, transitions,
+    and the custom cursor particle effect.
+  -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.4/TweenMax.min.js"></script>
+  <title>Ken Arceno — A Story in Progress</title>
+  <meta name="description" content="Ken Arceno — a third-year college student portfolio: projects, experiments, and reflections.">
+
+  <!-- 
+    Google Fonts
+    Preconnect improves loading performance.
+    Fonts used across the entire design (titles, body text).
+  -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lora:wght@300;400;600&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome Icons (used for social links and UI icons) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <!-- 
+    Main stylesheet for the site.
+    All layout, theme, spacing, animations, and responsive design 
+    are controlled inside styles.css.
+  -->
+  <link rel="stylesheet" href="styles.css">
+
+  <!-- Mobile browser theme color -->
+  <meta name="theme-color" content="#FAF8F5" />
+</head>
+<body id="top" class="theme-light">
+
+  <!-- ============================================================
+       PRELOADER
+       ------------------------------------------------------------
+       A minimal loading indicator shown before the main content 
+       becomes visible. main.js removes the preloader once the page 
+       fully loads. Uses SVG for crisp scaling on all resolutions.
+    ============================================================ -->
+  <div id="preloader" aria-hidden="true">
+    <svg class="preloader-mark" viewBox="0 0 100 100" aria-hidden="true">
+      <circle cx="50" cy="50" r="22" stroke-width="6" stroke-linecap="round" fill="none" />
+      <path d="M50 20 L50 40" stroke-linecap="round" stroke-width="6" fill="none"/>
+    </svg>
+  </div>
+
+  <!-- ============================================================
+       MAIN NAVIGATION BAR
+       ------------------------------------------------------------
+       Contains:
+       - Logo (which includes a small interactive Easter Egg)
+       - Mobile menu toggle button
+       - Desktop/mobile navigation links
+       - Links to Resume and Canvas pages
+
+       ARIA roles improve accessibility for screen readers.
+    ============================================================ -->
+  <header class="site-header" role="banner" aria-label="Primary">
+    <nav class="nav" role="navigation" aria-label="Main navigation">
+      <a class="logo" href="#top" aria-label="Go to top">
+        <span class="logo-mark" aria-hidden="true">✦</span>
+        <span class="logo-text" id="logoText">Ken Arceno</span>
+      </a>
+
+      <!-- 
+        Mobile Navigation Toggle Button
+        Controlled via JS to expand/collapse the navigation list on small screens.
+      -->
+      <button class="nav-toggle" aria-controls="primary-menu" aria-expanded="false" aria-label="Open menu">
+        <span class="visually-hidden">Toggle navigation</span>
+        <svg width="22" height="22" aria-hidden="true"><path d="M3 6h16M3 11h16M3 16h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      </button>
+
+      <!-- Primary Navigation Links -->
+      <ul id="primary-menu" class="nav-list" role="menubar">
+        <li role="none"><a role="menuitem" href="#about">About</a></li>
+        <li role="none"><a role="menuitem" href="#hobbies">Hobbies</a></li>
+        <li role="none"><a role="menuitem" href="#projects">Projects</a></li>
+        <li role="none"><a role="menuitem" href="#certifications">Certifications</a></li>
+        <li role="none"><a role="menuitem" href="#reflections">Reflections</a></li>
+        <li role="none"><a role="menuitem" href="#contact">Contact</a></li>
+
+        <!-- Divider for external pages -->
+        <li role="none" class="nav-divider" aria-hidden="true"></li>
+
+        <!-- Additional pages -->
+        <li role="none"><a role="menuitem" href="resume.html">Resume</a></li>
+        <li role="none"><a role="menuitem" href="canvas.html">Canvas</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- ============================================================
+       BACKGROUND LAYERS
+       ------------------------------------------------------------
+       Layered elements for ambience:
+       - A soft ambient gradient (bg-ambient)
+       - A low-contrast grid texture (bg-grid)
+       These are decorative and do not affect layout.
+    ============================================================ -->
+  <div id="bg-ambient" aria-hidden="true"></div>
+  <div id="bg-grid" aria-hidden="true" class="bg-grid"></div>
+
+  <!-- ============================================================
+       MAIN CONTENT WRAPPER
+       ------------------------------------------------------------
+       All sections (Hero → Footer) are wrapped inside <main>.
+    ============================================================ -->
+  <main>
+
+    <!-- ============================================================
+         HERO SECTION
+         ------------------------------------------------------------
+         Contains:
+         - Intro title and subtitle
+         - CTAs (See Projects, Read My Story)
+         - Motivational quote
+         - Portrait with parallax and fade-in animations
+         - Scroll-down indicator
+
+         Animations:
+         - Staggered fade-up on load
+         - Parallax movement on mouse
+         - Portrait reveal animation controlled via main.js
+      ============================================================ -->
+    <section id="hero" class="hero" aria-labelledby="hero-title">
+      <div class="hero-inner container">
+        
+        <!-- Left side: Text content -->
+        <div class="hero-copy">
+          <h1 id="hero-title" class="hero-title anim-fade-up delay-100">
+            Hi — I’m <span class="name">Ken Arceno</span>
+          </h1>
+
+          <p class="hero-sub anim-fade-up delay-200">A third-year college student. A reader. A maker. A story in progress.</p>
+
+          <!-- Call-to-action buttons -->
+          <div class="hero-actions anim-fade-up delay-350">
+            <a class="btn primary btn-cta" href="#projects" data-analytics="see-projects">See Projects</a>
+            <a class="btn ghost" href="#about">Read My Story</a>
+          </div>
+
+          <!-- Personal quote -->
+          <blockquote class="hero-quote anim-fade-up delay-450">
+            “I don’t just read stories — I live mine.”
+          </blockquote>
+        </div>
+
+        <!-- Right side: Portrait with caption -->
+        <figure class="hero-portrait anim-portrait" aria-hidden="false">
+          <img src="assets/ken-portrait.jpg" alt="Ken Arceno portrait" id="ken-portrait">
+          <figcaption class="portrait-caption">Ken Arceno — third-year student</figcaption>
+        </figure>
+      </div>
+
+      <!-- Scroll indicator -->
+      <a href="#about" class="scroll-down" aria-label="Scroll to About">↓</a>
+    </section>
+
+    <!-- ============================================================
+         ABOUT SECTION — Chapter 1
+         ------------------------------------------------------------
+         Introduces the author with:
+         - Personal background
+         - Skills, interests, and school info
+         - A decorative book-style card with tilt animation
+         Elements fade in using the "reveal" class and IntersectionObserver.
+    ============================================================ -->
+    <section id="about" class="section about reveal" aria-labelledby="about-title">
+      <div class="container">
+        <h2 id="about-title" class="section-title">Chapter 1 — The Author</h2>
+
+        <div class="about-grid">
+
+          <!-- Main text content -->
+          <div class="about-text">
+            <p class="lead">
+              In a quiet corner of the world, a curious student discovered the joy of creating with code and shaping stories through design. That student is me — <strong>Ken Arceno</strong>.
+            </p>
+
+            <p>
+              I learn best by making things — small projects, class tasks, personal experiments, anything that lets me explore ideas through practice. I value clarity, thoughtful detail, and simplicity. This site is a collection of my chapters: projects, hobbies, reflections, and the little things that define my work.
+            </p>
+            
+            <!-- Personal info list -->
+            <ul class="about-list">
+              <li><strong>School:</strong> San Sebastian College – Recoletos de Cavite</li>
+              <li><strong>Skills:</strong> HTML, CSS, JavaScript, Python (basic), design fundamentals</li>
+              <li><strong>Interests:</strong> Reading, music, movies, game development, gaming</li>
+            </ul>
+
+            <p class="muted">Hint: click my name in the header for a tiny surprise.</p>
+          </div>
+
+          <!-- Decorative card with tilt animation -->
+          <aside class="about-aside" aria-hidden="true">
+            <div class="book-card tilt-on-hover" data-tilt>
+              <div class="book-title">Story in Progress</div>
+              <div class="book-sub">Ken Arceno</div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         HOBBIES & INTERESTS — Between Chapters
+         ------------------------------------------------------------
+         Displays four hobby cards. Each card:
+         - Contains an emoji icon
+         - Has a title and short description
+         - Uses reveal-on-scroll animation
+         Marked with role="listitem" for accessibility.
+    ============================================================ -->
+    <section id="hobbies" class="section hobbies reveal" aria-labelledby="hobbies-title">
+      <div class="container">
+        <h2 id="hobbies-title" class="section-title">Between Chapters — Hobbies & Interests</h2>
+        <p class="section-lead">Things I do for when I'm not studying.</p>
+
+        <div class="hobbies-grid">
+
+          <!-- Hobby: Reading -->
+          <article class="hobby-card reveal" role="listitem" data-interest="reading">
+            <div class="hobby-icon">📚</div>
+            <h3>Reading</h3>
+            <p>Novels, manga, manhwa — stories fuel my imagination.</p>
+          </article>
+
+          <!-- Hobby: Coding -->
+          <article class="hobby-card reveal" role="listitem" data-interest="coding">
+            <div class="hobby-icon">💻</div>
+            <h3>Coding & Web Design</h3>
+            <p>Front-end experiments and UI polish.</p>
+          </article>
+
+          <!-- Hobby: Music -->
+          <article class="hobby-card reveal" role="listitem" data-interest="music">
+            <div class="hobby-icon">🎵</div>
+            <h3>Music</h3>
+            <p>Lo-fi beats for focus and inspiration.</p>
+          </article>
+
+          <!-- Hobby: Game Dev -->
+          <article class="hobby-card reveal" role="listitem" data-interest="gamedev">
+            <div class="hobby-icon">👾</div>
+            <h3>Game Dev</h3>
+            <p>Small prototypes and level design experiments.</p>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+  <!-- ============================================================
+        PROJECTS SECTION — Chapter 2: Works in Progress
+        ------------------------------------------------------------
+        Contains a horizontal project carousel with:
+        - Scroll buttons (left/right)
+        - Keyboard navigation
+        - 3D tilt effects
+        - Click-to-open modal previews
+        Cards include media, title, description, and tags.
+
+        JS handles:
+        - Track scrolling
+        - Tilt animation
+        - Modal content population
+        - Keyboard arrow navigation
+  ============================================================ -->
+  <section id="projects" class="section projects" aria-labelledby="projects-title">
+    <div class="container">
+      <h2 id="projects-title" class="section-title">Chapter 2 — Works in Progress</h2>
+      <p class="section-lead">Selected class projects and personal experiments. Click a card to view details.</p>
+
+      <!-- Carousel controls -->
+      <div class="projects-controls">
+        <button class="track-nav prev" aria-label="Scroll left">‹</button>
+        <button class="track-nav next" aria-label="Scroll right">›</button>
+      </div>
+
+      <!-- Horizontal project track -->
+      <div class="projects-track" id="projectsTrack" tabindex="0" role="region" aria-label="Works in progress carousel">
+
+          <!-- ======================================================
+               PROJECT PANEL TEMPLATE
+               ------------------------------------------------------
+               Each panel uses:
+               - class="panel project-card tilt-3d"
+               - data-project-id="unique-id"
+               - tabindex="0" to allow keyboard interaction
+               - aria-labelledby for accessibility
+            ====================================================== -->
+
+        <!-- Panel 1 — PokéDexDB -->
+        <article class="panel project-card tilt-3d" data-project-id="p1" tabindex="0" role="article" aria-labelledby="p1-title">
+          <div class="project-media">
+            <img src="assets/project1-thumb.jpg" alt="PokéDexDB project thumbnail">
+          </div>
+          <div class="project-body">
+            <h3 id="p1-title" class="project-title">PokéDexDB — Pokémon Database</h3>
+            <p class="project-caption">A FireRed data system that organizes game info into a clean, searchable DB for analysis of stats, movesets, and maps.</p>
+            <div class="project-tags"><span>C#</span><span>Data</span><span>Database</span><span>Analysis</span></div>
+          </div>
+        </article>
+
+        <!-- Panel 2 — DINO Platformer -->
+        <article class="panel project-card tilt-3d" data-project-id="p2" tabindex="0" role="article" aria-labelledby="p2-title">
+          <div class="project-media">
+            <img src="assets/project2-thumb.jpg" alt="DINO Game project">
+          </div>
+          <div class="project-body">
+            <h3 id="p2-title" class="project-title">DINO — 2D Platformer</h3>
+            <p class="project-caption">A Dino 2D platformer with progressive levels, seasonal worlds, and full ending—built from the ground up.</p>
+            <div class="project-tags"><span>Godot</span><span>2D Platformer</span><span>Game Dev</span><span>Pixel Art</span></div>
+          </div>
+        </article>
+
+        <!-- Panel 3 — Resume Webpage -->
+        <article class="panel project-card tilt-3d" data-project-id="p3" tabindex="0" role="article" aria-labelledby="p3-title">
+          <div class="project-media">
+            <img src="assets/project3-thumb.jpg" alt="Resume project thumbnail">
+          </div>
+          <div class="project-body">
+            <h3 id="p3-title" class="project-title">Resume Webpage</h3>
+            <p class="project-caption"> A clean, responsive résumé page emphasizing semantic HTML and accessibility.</p>
+            <div class="project-tags"><span>Design</span><span>Accessibility</span></div>
+          </div>
+        </article>
+
+        <!-- Panel 4 — ParkZone System -->
+        <article class="panel project-card tilt-3d" data-project-id="p4" tabindex="0" role="article" aria-labelledby="p4-title">
+          <div class="project-media">
+            <img src="assets/project4-thumb.jpg" alt="ParkZone project thumbnail">
+          </div>
+          <div class="project-body">
+            <h3 id="p4-title" class="project-title">ParkZone - Parking Management</h3>
+            <p class="project-caption">Parking management system prototype focused on queue handling, slot monitoring, and quick user check-in.</p>
+            <div class="project-tags"><span>Web App</span><span>Queue Management</span><span>IoT or Monitoring</span></div>
+          </div>
+        </article>
+
+
+      <!-- Panel 5 — Lend-IT System -->
+      <article class="panel project-card tilt-3d" data-project-id="p5" tabindex="0" role="article" aria-labelledby="p5-title">
+        <div class="project-media">
+          <img src="assets/project5-thumb.jpg" alt="Lend-IT system thumbnail">
+        </div>
+        <div class="project-body">
+          <h3 id="p5-title" class="project-title">Lend-IT - Equipment Circulation System</h3>
+          <p class="project-caption">Equipment circulation management system for libraries, featuring log-in/out forms, real-time resource tracking, and enhanced accountability.</p>
+          <div class="project-tags"><span>Web App</span><span>UI/UX</span><span>Database</span><span>Prototyping</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Panel 6 — ChapterOne eBookshop --> 
+      <article class="panel project-card tilt-3d " data-project-id="p6" tabindex="0" role="article" aria-labelledby="p6-title">
+        <div class="project-media">
+          <img src="assets/project6-thumb.jpg" alt="ChapterOne project thumbnail">
+        </div>
+        <div class="project-body">
+          <h3 id="p6-title" class="project-title">ChapterOne - eBookshop Management System</h3>
+          <p class="project-caption">Full-stack digital bookstore platform for managing eBook catalogs, facilitating secure customer purchases, and providing real-time sales analytics.</p>
+          <div class="project-tags"><span>Desktop App</span><span>eCommerce</span><span>Inventory Management</span><span>Sales Reporting</span>
+          </div>
+        </div>
+      </article>
+
+      </div>
+    </div>
+
+      <!-- ============================================================
+           PROJECT MODAL
+           ------------------------------------------------------------
+           Opens when a project card is clicked.
+           JS dynamically fills:
+           - Title
+           - Image
+           - Description
+           - Tags/metadata
+
+           Includes accessible roles (dialog, document) and supports:
+           - ESC close
+           - Click outside to close
+           - Close button
+      ============================================================ -->
+    <div id="project-modal" class="modal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="modal-title">
+      <div class="modal-inner" role="document">
+
+        <!-- Close button -->
+        <button class="modal-close" aria-label="Close project view">✕</button>
+
+        <!-- Modal content container -->
+        <div class="modal-content">
+          <h3 id="modal-title">Project Title</h3>
+          <div class="modal-media"><img src="" alt="" id="modal-image"></div>
+          <div class="modal-description" id="modal-desc"></div>
+          <div class="modal-meta" id="modal-meta"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+    <!-- ============================================================
+         CERTIFICATIONS & WORKSHOPS — Chapter 3
+         ------------------------------------------------------------
+         Displays grouped certifications:
+         - Saylor courses
+         - Workshops
+         Each group has its own heading and bullet list.
+         Layout handled with CSS grid and responsive collapse behavior.
+    ============================================================ -->
+    <section id="certifications" class="section certifications reveal" aria-labelledby="certifications-title">
+      <div class="container">
+        <h2 id="certifications-title" class="section-title">Chapter 3 — Certifications & Workshops</h2>
+        <p class="section-lead">A curated list of my completed courses, certifications, and workshops to showcase my skills and learning journey.</p>
+
+        <div class="certifications-grid">
+
+          <!-- Saylor Certifications -->
+          <div class="certification-category reveal">
+            <h3><span class="icon">🎓</span> SAYLOR Courses</h3>
+            <ul>
+              <li>BUS200 Business Ethics</li>
+              <li>PHIL102 Critical Thinking</li>
+              <li>CS101 Introduction to Computer Science I</li>
+              <li>CS102 Introduction to Computer Science II</li>
+              <li>CS105 Introduction to Python</li>
+              <li>CS107 C++ Programming</li>
+              <li>CS201 Elementary Data Structures</li>
+              <li>CS202 Discrete Structures</li>
+              <li>CS302 Software Engineering</li>
+              <li>CS401 Operating Systems</li>
+              <li>PRDV410 Introduction to Java & OOP</li>
+              <li>PRDV223 Organizational Culture, Diversity, and Ethics</li>
+              <li>PRDV008 Preparing and Delivering Presentations</li>
+              <li>PRD104 Professional Etiquette</li>
+            </ul>
+          </div>
+
+          <!-- CISCO Courses -->
+          <div class="certification-category reveal">
+            <h3><span class="icon">💻</span> CISCO Courses</h3>
+            <ul>
+              <li>Linux Unhatched</li>
+              <li>Operating Systems Basics</li>
+              <li>Python Essentials 1</li>
+              <li>Python Essentials 2</li>
+            </ul>
+          </div>
+
+          <!-- Seminars & Workshops -->
+          <div class="certification-category reveal">
+            <h3><span class="icon">🛠️</span> Seminars & Workshops</h3>
+            <ul>
+              <li>DevOps</li>
+              <li>Data Architecture</li>
+              <li>ITpreneurship</li>
+              <li>ServiceNow & BizDevOps</li>
+              <li>Server Virtualization & Disaster Recovery</li>
+              <li>PyGame GUI & HID Control</li>
+              <li>GSM Modem SMS Integration</li>
+              <li>Apache Data Analytics</li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         REFLECTIONS — Chapter 4
+         ------------------------------------------------------------
+         Simple text-focused section displaying personal reflections,
+         lessons learned, and growth across the college journey.
+         Uses narrow container for optimal readability.
+    ============================================================ -->
+    <section id="reflections" class="section reflections reveal" aria-labelledby="reflections-title">
+      <div class="container">
+        <h2 id="reflections-title" class="section-title">Notes in the Margins</h2>
+        <div class="notes-list">
+          <article class="note reveal">
+            <p class="note-text">“If you fall, fall forward.”</p>
+            <p class="note-meta">— My Motto</p>
+          </article>
+
+          <article class="note reveal">
+            <p class="note-text">“Learning isn't a destination—it's a habit.”</p>
+            <p class="note-meta">— Quick thought</p>
+          </article>
+        </div>
+
+        <a class="btn small" href="#contact">Write Me a Line</a>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         CONTACT — EPILOGUE
+         ------------------------------------------------------------
+         Final call-to-action encouraging collaboration or feedback.
+         Includes a mailto email button.
+         Uses "narrow" container for balanced typography.
+    ============================================================ -->
+    <section id="contact" class="section contact reveal" aria-labelledby="contact-title">
+      <div class="container narrow">
+        <h2 id="contact-title" class="section-title">Epilogue — Let’s Connect</h2>
+        <p class="section-lead">If you'd like to collaborate, chat, or share a book recommendation, I'd love to hear from you.</p>
+
+        <form id="contact-form" class="contact-form" action="#" method="post" novalidate>
+          <div class="form-row">
+            <label for="name">Your name</label>
+            <input id="name" name="name" type="text" required autocomplete="name" placeholder="e.g. John">
+          </div>
+
+          <div class="form-row">
+            <label for="email">Your email</label>
+            <input id="email" name="email" type="email" required autocomplete="email" placeholder="you@example.com">
+          </div>
+
+          <div class="form-row">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="6" required placeholder="Write a short message..."></textarea>
+          </div>
+
+          <!-- Contact email button -->
+          <div class="form-actions">
+            <button class="btn primary" type="submit">Send Message</button>
+            <a class="btn ghost" href="mailto:s.ken.adrien.arceno@sscr.edu">Or email me</a>
+          </div>
+
+          <!-- Social icons -->
+          <div class="social contact-social">
+            <a href="https://www.facebook.com/kenarceno15" target="_blank" rel="noopener" aria-label="Ken's Facebook"><i class="fab fa-facebook"></i></a>
+            <a href="https://www.instagram.com/kaenadeyen/" target="_blank" rel="noopener" aria-label="Ken's Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://github.com/Azzurum" target="_blank" rel="noopener" aria-label="Ken's GitHub"><i class="fab fa-github"></i></a>
+            <a href="https://www.linkedin.com/in/ken-adrien-arceno-b181622b2" target="_blank" rel="noopener" aria-label="Ken's LinkedIn"><i class="fab fa-linkedin"></i></a>
+          </div>
+        </form>
+      </div>
+    </section>
+
+  </main>
+
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="0" height="0" style="position:absolute; overflow:hidden; top:0; left:0;">
+  <defs>
+    <filter id="goo">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="6" result="blur" />
+      <feColorMatrix in="blur" mode="matrix"
+        values="1 0 0 0 0  
+                0 1 0 0 0  
+                0 0 1 0 0  
+                0 0 0 35 -15"
+        result="goo" />
+      <feComposite in="SourceGraphic" in2="goo" operator="atop"/>
+    </filter>
+  </defs>
+</svg>
+
+  <!-- ============================================================
+       FOOTER
+       ------------------------------------------------------------
+       Contains © copyright text.
+       Includes academic project disclaimer.
+       Extra spacing fixed through CSS adjustments.
+    ============================================================ -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container footer-inner">
+      <p>© <span id="curYear"></span> Ken Arceno. All rights reserved.</p>
+      <p class="muted small">This site is a third-year student project — elegant, simple, and built with care.</p>
+    </div>
+  </footer>
+
+  <!-- ============================================================
+       EASTER EGG MODAL
+       ------------------------------------------------------------
+       Appears when clicking the header logo text.
+       JS toggles visibility and controls close behavior.
+    ============================================================ -->
+  <div id="easter-egg" class="easter-egg" aria-hidden="true" hidden>
+    <div class="egg-inner">
+      <h3>You found a secret chapter! 🌟</h3>
+      <blockquote>“Curiosity is the engine of achievement.”</blockquote>
+      <button class="egg-close" aria-label="Close secret">Close</button>
+    </div>
+  </div>
+
+  <!-- Small inline helper for year -->
+  <script>
+    (function() {
+      const y = new Date().getFullYear();
+      const el = document.getElementById('curYear');
+      if (el) el.textContent = y;
+    })();
+  </script>
+
+  <!-- ============================================================
+       SCRIPT IMPORTS
+       ------------------------------------------------------------
+       main.js contains:
+       - Preloader logic
+       - Mobile navigation toggle
+       - Scroll reveal animations
+       - Tilt effects for cards
+       - Project modal system
+       - Easter egg behavior
+       - Smooth scroll
+       Must be placed at the bottom for best performance.
+    ============================================================ -->
+  <script src="main.js" defer></script>
+  <!-- Cursor container -->
+  <div id="cursor" class="Cursor"></div>
+</body>
+</html>

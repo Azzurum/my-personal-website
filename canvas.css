@@ -1,0 +1,36 @@
+/* ============================
+   PAC-MAN CANVAS STYLES
+   ============================ */
+
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    overflow: hidden;
+}
+
+/* Fullscreen canvas */
+#pacmanCanvas {
+    display: block;
+    width: 100vw;
+    height: 100vh;
+
+    /* Important: prevent blurriness on scaling */
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+}
+
+/* Optional: Smooth unselectable canvas */
+body, canvas {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Optional: Anti-ghosting on mobile */
+canvas {
+    touch-action: none;
+}

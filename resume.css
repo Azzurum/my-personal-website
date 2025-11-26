@@ -1,0 +1,268 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+/* Light mode background restored to blue gradient */
+body {
+    background: linear-gradient(135deg, #b6d6ff, #d3eaff, #e5f3ff);
+    color: #1a1a1a;
+    transition: 0.4s;
+}
+
+/* Dark mode */
+body.dark {
+    background: #0d1117;
+    color: #fff;
+}
+
+/* Layout */
+.container {
+    display: flex;
+    max-width: 1400px;
+    margin: auto;
+    padding: 40px 25px;
+    gap: 30px;
+}
+
+/* Sidebar */
+.sidebar {
+    min-width: 310px;
+    max-width: 330px;
+    background: rgba(255, 255, 255, 0.22);
+    backdrop-filter: blur(15px);
+    border-radius: 25px;
+    padding: 30px;
+    height: fit-content;
+    position: sticky;
+    top: 20px;
+    animation: slideIn 1s ease both;
+}
+
+.profile-image {
+    width: 170px;
+    border-radius: 50%;
+    display: block;
+    margin: auto;
+    border: 4px solid #0077ff;
+    box-shadow: 0 0 14px #0077ff;
+    margin-bottom: 10px;
+}
+
+/* Text */
+.name {
+    text-align: center;
+    font-size: 1.9rem;
+    margin-top: 10px;
+    font-weight: 700;
+}
+
+.title {
+    text-align: center;
+    font-size: 1rem;
+    opacity: 0.8;
+}
+
+/* Sidebar Boxes */
+.box {
+    margin-top: 28px;
+    padding: 18px;
+    background: rgba(255, 255, 255, 0.13);
+    border-radius: 18px;
+    transition: 0.3s;
+}
+
+.box:hover {
+    transform: scale(1.03);
+    box-shadow: 0 0 14px rgba(0, 119, 255, 0.6);
+}
+
+/* Download button */
+.resume-btn {
+    width: 100%;
+    padding: 12px;
+    background: #0077ff;
+    border: none;
+    border-radius: 14px;
+    cursor: pointer;
+    color: white;
+    font-weight: 600;
+    margin: 18px 0;
+    transition: 0.3s;
+}
+.resume-btn:hover {
+    background: #005ed6;
+    transform: scale(1.05);
+}
+
+/* Main content */
+.content {
+    flex: 1;
+}
+
+/* Card */
+.card {
+    background: rgba(255, 255, 255, 0.18);
+    backdrop-filter: blur(12px);
+    padding: 28px;
+    margin-bottom: 28px;
+    border-radius: 25px;
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 14px rgba(0, 119, 255, 0.6);
+}
+
+/* Timeline */
+.timeline {
+    border-left: 4px solid #0077ff;
+    padding-left: 25px;
+    margin-top: 12px;
+}
+
+.timeline-item {
+    margin-bottom: 28px;
+    position: relative;
+}
+
+.timeline-item::before {
+    content: "";
+    width: 15px;
+    height: 15px;
+    background: #0077ff;
+    border-radius: 50%;
+    position: absolute;
+    left: -34px;
+    top: 2px;
+}
+
+.timeline-item .year {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #0077ff;
+}
+
+/* Projects */
+.projects {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+    gap: 22px;
+}
+
+.project {
+    padding: 18px;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.13);
+    backdrop-filter: blur(10px);
+    border-left: 5px solid #0077ff;
+    transition: 0.3s;
+}
+.project:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 12px rgba(0, 119, 255, 0.6);
+}
+
+/* Multi-columns */
+.two-column,
+.three-column {
+    list-style: none;
+    columns: 2;
+}
+.three-column {
+    columns: 3;
+}
+
+/* Fade in animation */
+.fade-in {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: 0.8s ease;
+}
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Theme toggle */
+.theme-toggle {
+    position: fixed;
+    top: 18px;
+    right: 18px;
+    background: #0077ff;
+    color: white;
+    border-radius: 50%;
+    padding: 12px;
+    cursor: pointer;
+    font-size: 20px;
+    transition: 0.3s;
+}
+.theme-toggle:hover {
+    transform: rotate(20deg) scale(1.15);
+}
+
+/* Back to top btn */
+.top-btn {
+    position: fixed;
+    bottom: 22px;
+    right: 22px;
+    background: #0077ff;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    padding: 14px 16px;
+    cursor: pointer;
+    font-size: 18px;
+    transition: 0.3s;
+}
+.top-btn:hover {
+    transform: scale(1.15);
+}
+
+/* Dark theme overrides */
+body.dark .sidebar,
+body.dark .card,
+body.dark .box,
+body.dark .project {
+    background: rgba(255, 255, 255, 0.05);
+}
+body.dark .timeline-item .year {
+    color: #00aaff;
+}
+
+/* Animations */
+@keyframes slideIn {
+    from { transform: translateX(-70px); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+.back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 600;
+    text-decoration: none;
+    background: rgba(255, 255, 255, 0.22);
+    padding: 12px 20px;
+    border-radius: 16px;
+    color: #1a1a1a;
+    margin: 25px;
+    backdrop-filter: blur(10px);
+    transition: 0.3s;
+    border-left: 4px solid #0077ff;
+}
+
+.back-btn:hover {
+    transform: translateX(-5px);
+    box-shadow: 0 0 15px rgba(0, 119, 255, 0.5);
+}
+
+/* Dark mode compatibility */
+body.dark .back-btn {
+    background: rgba(255, 255, 255, 0.05);
+    color: #fff;
+    border-left-color: #00aaff;
+}
